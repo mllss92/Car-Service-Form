@@ -1,0 +1,156 @@
+<div class="content-wrapper">
+  <div class="container">
+    <div class="steps-box row">
+
+      <div class="step1 col s12 l6">
+        <div class="form-box">
+          <div class="form-header">
+            <h3 class="grey-text text-darken-3">POST A JOB</h3>
+            <h5 class="grey-text text-darken-2">Step 1</h5>
+          </div>
+          <div class="divider col s11 grey"></div>
+          <div class="row">
+            <form class="col s11">
+
+              <div class="input-field">
+                <input class="" type="text" id="mark">
+                <label for="mark">Mark</label>
+              </div>
+
+              <div class="input-field">
+                <input class="" type="text" id="model">
+                <label for="model">Model</label>
+              </div>
+
+              <div class="input-field">
+                <input class="" type="number" id="year">
+                <label for="year">Year</label>
+              </div>
+
+              <div class="input-field">
+                <textarea class=" materialize-textarea" id="txtArea" name="txtArea" ngModel
+                  (ngModelChange)="setParentHeight()"></textarea>
+                <label for="txtArea">What exactly need to repaired?</label>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="description-content">
+            <small class="grey-text text-darken-2">Description</small>
+            <p class="grey-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure sed ea eos sapiente
+              ipsa!
+            </p>
+          </div>
+          <div class="divider grey col s11"></div>
+        </div>
+
+
+      </div>
+
+      <div class="step2 col s12 l6">
+        <div class="form-box">
+          <div class="form-header">
+            <h3 class="grey-text text-darken-3">POST A JOB</h3>
+            <h5 class="da grey-text text-darken-2">Step 2</h5>
+          </div>
+          <div class="divider col s11 grey"></div>
+
+
+          <div class="row">
+
+            <form class="col s11" [formGroup]="formStep2">
+              <div class="input-field">
+                <select formControlName="category" (change)="editFontColor(category.M_FormSelect)" #category>
+                  <option value="default" disabled>Category of Work</option>
+                  <option *ngFor="let category of categories" [value]="category.value">{{ category.content }}</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <select formControlName="subcategory" (change)="editFontColor(subcategory.M_FormSelect)" #subcategory>
+                  <option value="default" disabled>Subcategory</option>
+                  <option *ngFor="let category of subcategories.body" [value]="category.value">{{ category.content }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <select formControlName="emirate" (change)="editFontColor(emirate.M_FormSelect)" #emirate>
+                  <option value="default" disabled>Select Emirate</option>
+                  <option *ngFor="let emirate of emirates" [value]="emirate.value">{{ emirate.content }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <select formControlName="area" (change)="editFontColor(area.M_FormSelect)" #area>
+                  <option value="default" disabled>Select Area</option>
+                  <option *ngFor="let area of areas" [value]="area.value">{{ area.content }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="need-box">
+                <p>
+                  <label>
+                    <input class="filled-in checkbox-orange" type="checkbox" formControlName="needTow">
+                    <span>Need tow Truck</span>
+                  </label>
+                </p>
+
+                <p>
+                  <label>
+                    <input class="filled-in checkbox-orange" type="checkbox" formControlName="needPickup">
+                    <span>Need car Pickup</span>
+                  </label>
+                </p>
+
+                <p>
+                  <label>
+                    <input class="filled-in checkbox-orange" type="checkbox" formControlName="customParts">
+                    <span>Custom Parts</span>
+                  </label>
+                </p>
+              </div>
+
+              <div class="input-field date">
+                <div class="date-label grey-text text-darken-2"><small>Desired date of repair</small></div>
+                <i class="material-icons prefix grey-text text-darken-2">today</i>
+                <input type="text" class="datepicker grey-text text-darken-2" id="date-picker" formControlName="date">
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="description-content">
+            <small class="grey-text text-darken-2">Description</small>
+            <p class="grey-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure sed ea eos sapiente
+              ipsa!
+            </p>
+          </div>
+          <div class="divider grey"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="buttons row">
+      <div class="submit-btn col l6 s6 center-align">
+        <button class="btn grey waves-effect" type="submit">Submit
+          <i class="material-icons right">local_shipping</i>
+        </button>
+      </div>
+      <div class="clear-btn col l6 s6 center-align">
+        <button class="btn grey waves-effect" type="submit">Clear
+          <i class="material-icons right">cleaning_services</i>
+        </button>
+      </div>
+    </div>
+    <!-- {{ formStep2.value | json }} -->
+  </div>
+</div>

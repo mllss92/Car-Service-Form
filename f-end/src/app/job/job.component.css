@@ -1,12 +1,110 @@
-.input-field {
-  margin-left: 10px;
+* {
+  box-sizing: border-box !important;
 }
 
-.input-field input[type=text]:focus {
+h3 {
+  margin: 0 .5rem 0 0;
+}
+
+.input-field, .form-header {
+  margin-left: 5%;
+}
+
+.input-field input:focus {
   border-bottom: 1px solid rgb(241, 183, 57);
   box-shadow: 0 1px 0 0 rgb(241, 183, 57);
 }
 
-.input-field input[type=text]:focus + label {
+.input-field input:focus + label {
   color: rgb(241, 183, 57);
 }
+
+.input-field textarea:focus + label {
+  color: rgb(241, 183, 57);
+}
+
+.input-field textarea:focus {
+  border-bottom: 1px solid rgb(241, 183, 57);
+  box-shadow: 0 1px 0 0 rgb(241, 183, 57);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{
+  display: none;
+}
+
+.description-content {
+  margin-left: 5%;
+  margin-bottom: 0;
+}
+
+.description p {
+  font-size: 14px;
+  margin: .5rem 0;
+}
+
+.description .divider {
+  width: 100%;
+}
+
+.input-field {
+  height: 3rem;
+}
+
+.need-box {
+  margin-left: 5%;
+  margin-top: 3rem;
+}
+
+.need-box [type="checkbox"].filled-in + span:not(.lever):after,
+.need-box [type="checkbox"].filled-in + span:not(.lever):before {
+  top: 15%;
+}
+
+.need-box [type="checkbox"].filled-in:checked + span:not(.lever):after{
+  border: 2px solid rgb(241, 183, 57);
+  background-color: rgb(241, 183, 57);
+}
+
+.need-box [type="checkbox"].filled-in:checked + span {
+  color: black;
+}
+
+.date {
+  width: 40%;
+}
+
+.input-field .prefix {
+  top: 95%;
+  left: -2%;
+  cursor: default;
+}
+
+.input-field .prefix ~ input {
+  margin-left: 2.5rem;
+  cursor: pointer;
+}
+
+.date-label {
+  position: relative;
+  top: 20%;
+  cursor: default;
+}
+
+.step1, .step2 {
+  min-height: 88vh;
+}
+
+.step1, .step2 {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+.need-box {
+  margin-left: 5%;
+  margin-top: 3rem;
+}
+
+.need-box [type="checkbox"].filled-in + span:not(.lever):after,
+.need-box [type="checkbox"].filled-in + span:not(.lever):before {
+  top: 15%;
+}
+
+.need-box [type="checkbox"].filled-in:checked + span:not(.lever):after{
+  border: 2px solid rgb(241, 183, 57);
+  background-color: rgb(241, 183, 57);
+}
+
+.need-box [type="checkbox"].filled-in:checked + span {
+  color: black;
+}
+
+.date {
+  width: 40%;
+}
+
+.input-field .prefix {
+  top: 95%;
+  left: -2%;
+  cursor: default;
+}
+
+.input-field .prefix ~ input {
+  margin-left: 2.5rem;
+  cursor: pointer;
+}
+
+.date-label {
+  position: relative;
+  top: 20%;
+  cursor: default;
+}

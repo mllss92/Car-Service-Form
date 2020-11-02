@@ -1,8 +1,7 @@
-@media (max-width: 992px) {
-  .step1, .step2 {
-    min-height: inherit !important;
-  }
+* {
+  box-sizing: border-box !important;
 }
+
 body, html {
   height: 100%;
 }
@@ -14,4 +13,105 @@ body {
 .content-wrapper {
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
+}
+
+h3 {
+  margin: 0 .5rem 0 0;
+}
+
+.input-field, .form-header {
+  margin-left: 5%;
+}
+
+.description-content {
+  margin-left: 5%;
+  margin-bottom: 0;
+}
+
+.description p {
+  font-size: 14px;
+  margin: .5rem 0;
+}
+
+.description .divider {
+  width: 100%;
+}
+
+.input-field {
+  height: 3rem;
+}
+
+.step1, .step2 {
+  min-height: 88vh !important;
+}
+
+.step1, .step2 {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.slideDown{
+  animation-name: slideDown;
+  -webkit-animation-name: slideDown;  
+
+  animation-duration: 1s; 
+  -webkit-animation-duration: 1s;
+
+  animation-timing-function: ease;    
+  -webkit-animation-timing-function: ease;    
+
+  visibility: visible !important;                     
+}
+
+@keyframes slideDown {
+  0% {
+      transform: translateY(-100%);
+  }
+  50%{
+      transform: translateY(8%);
+  }
+  65%{
+      transform: translateY(-4%);
+  }
+  80%{
+      transform: translateY(4%);
+  }
+  95%{
+      transform: translateY(-2%);
+  }           
+  100% {
+      transform: translateY(0%);
+  }       
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+      -webkit-transform: translateY(-100%);
+  }
+  50%{
+      -webkit-transform: translateY(8%);
+  }
+  65%{
+      -webkit-transform: translateY(-4%);
+  }
+  80%{
+      -webkit-transform: translateY(4%);
+  }
+  95%{
+      -webkit-transform: translateY(-2%);
+  }           
+  100% {
+      -webkit-transform: translateY(0%);
+  }   
+}
+
+
+
+@media (max-width: 992px) {
+  .step1, .step2 {
+    min-height: inherit !important;
+  }
 }

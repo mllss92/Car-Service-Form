@@ -1,4 +1,4 @@
-/* .input-field input:focus {
+.input-field input:focus {
   border-bottom: 1px solid rgb(241, 183, 57);
   box-shadow: 0 1px 0 0 rgb(241, 183, 57);
 }
@@ -19,11 +19,4 @@
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button{
   display: none;
-} */
-
-
-
-
-
-
-
+}

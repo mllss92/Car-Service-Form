@@ -1,0 +1,47 @@
+<div class="step1 col s12 l6 slideDown">
+  <div class="form-box">
+    <div class="form-header">
+      <h3 class="grey-text text-darken-3">POST A JOB</h3>
+      <h5 class="grey-text text-darken-2">Step 1</h5>
+    </div>
+    <div class="divider col s11 grey"></div>
+    <div class="row">
+      <form class="col s11" [formGroup]="formStep1">
+
+        <div class="input-field">
+          <input class="" type="text" id="mark" formControlName="mark">
+          <label for="mark">Mark</label>
+        </div>
+
+        <div class="input-field">
+          <input class="" type="text" id="model" formControlName="model">
+          <label for="model">Model</label>
+        </div>
+
+        <div class="input-field">
+          <input class="" type="number" id="year" formControlName="year">
+          <label for="year">Year</label>
+        </div>
+
+        <div class="input-field">
+          <textarea class=" materialize-textarea" id="txtArea" name="txtArea" (ngModelChange)="setParentHeight()"
+            formControlName="details"></textarea>
+          <label for="txtArea">What exactly need to repaired?</label>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="description">
+    <div class="description-content">
+      <small class="grey-text text-darken-2">Description</small>
+      <p class="grey-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure sed ea eos sapiente
+        ipsa!
+      </p>
+    </div>
+    <div class="divider grey col s11"></div>
+  </div>
+
+
+</div>

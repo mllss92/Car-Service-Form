@@ -51,6 +51,7 @@ export class JobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    mat.AutoInit();
     this.setSelectOptions();
     this.setDatePickerOptions();
     this.setTextAreaOptions();
@@ -66,7 +67,6 @@ export class JobComponent implements OnInit {
       customParts: new FormControl(false),
       date: new FormControl('mm/dd/yyyy')
     });
-    mat.AutoInit();
   }
 
   setTextAreaOptions(): void {

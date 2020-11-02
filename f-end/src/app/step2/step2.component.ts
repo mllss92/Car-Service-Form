@@ -2,6 +2,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as mat from 'materialize-css';
 
+import { SharedService } from './../shared/services/shared.service';
+
 @Component({
   selector: 'app-step2',
   templateUrl: './step2.component.html',
@@ -41,18 +43,17 @@ export class Step2Component implements OnInit {
     { value: 'Some area4', content: 'Some area 4' }
   ];
 
-  formStep2: FormGroup;
-
   date: string;
 
-  constructor() { }
+  constructor(public shared: SharedService) { }
 
   ngOnInit(): void {
+
     mat.AutoInit();
     this.setSelectOptions();
     this.setDatePickerOptions();
 
-    this.formStep2 = new FormGroup({
+    this.shared.formStep2 = new FormGroup({
       category: new FormControl('default', [Validators.required]),
       subcategory: new FormControl('default', [Validators.required]),
       emirate: new FormControl('default', [Validators.required]),
@@ -95,8 +96,6 @@ export class Step2Component implements OnInit {
 
   parseDate(): void {
     const dateValue = ($('#date-picker')[0] as HTMLInputElement).value;
-    console.log(dateValue);
-
     if (dateValue) {
       this.date = dateValue;
     }

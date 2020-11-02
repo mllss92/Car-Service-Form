@@ -1,4 +1,5 @@
 <div class="step2 col s12 l6 slideDown">
+  {{ shared.formStep2.value |json }}
   <div class="form-box">
     <div class="form-header">
       <h3 class="grey-text text-darken-3">POST A JOB</h3>
@@ -9,7 +10,7 @@
 
     <div class="row">
 
-      <form class="col s11" [formGroup]="formStep2">
+      <form class="col s11" [formGroup]="shared.formStep2">
         <div class="input-field">
           <select formControlName="category" (change)="editFontColor(category.M_FormSelect)" #category>
             <option value="default" disabled>Category of Work</option>

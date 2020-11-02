@@ -2,6 +2,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as mat from 'materialize-css';
 
+import { SharedService } from './../shared/services/shared.service';
+
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
@@ -9,15 +11,14 @@ import * as mat from 'materialize-css';
 })
 export class Step1Component implements OnInit {
 
-  formStep1: FormGroup;
 
-  constructor() { }
+  constructor(public shared: SharedService) { }
 
   ngOnInit(): void {
     mat.AutoInit();
     this.setTextAreaOptions();
 
-    this.formStep1 = new FormGroup({
+    this.shared.formStep1 = new FormGroup({
       mark: new FormControl(undefined, [Validators.required]),
       model: new FormControl(undefined, [Validators.required]),
       year: new FormControl(undefined, [Validators.required]),

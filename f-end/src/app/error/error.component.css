@@ -1,0 +1,15 @@
+.error {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.error::before {
+  font-family: "Material Icons";
+  content: '\e15a';
+  color: #FFCDD2;
+  display: inline-block;
+  transform: rotate(0.8turn) scale(3);
+  position: relative;
+  left: -.8em;
+  top: -2em
+}

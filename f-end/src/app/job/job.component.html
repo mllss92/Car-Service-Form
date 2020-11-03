@@ -4,18 +4,19 @@
 
       <app-step1></app-step1>
 
-      <app-step2 *ngIf="shared.formStep1.valid"></app-step2>
+      <app-step2 (step2Validate)="step2Validate()" *ngIf="checkStep1()"></app-step2>
 
     </div>
 
     <div class="buttons row">
       <div class="submit-btn col l6 s6 center-align">
-        <button class="btn grey waves-effect" type="submit">Submit
+        <button class="btn grey waves-effect" type="submit" [disabled]="isSubmitAvailable()"
+          (click)="trySibmit()">Submit
           <i class="material-icons right">local_shipping</i>
         </button>
       </div>
       <div class="clear-btn col l6 s6 center-align">
-        <button class="btn grey waves-effect" type="submit">Clear
+        <button class="btn grey waves-effect" type="submit" (click)="clearForms()">Clear
           <i class="material-icons right">cleaning_services</i>
         </button>
       </div>

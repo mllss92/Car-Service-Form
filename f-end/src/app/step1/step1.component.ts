@@ -19,9 +19,9 @@ export class Step1Component implements OnInit {
     this.setTextAreaOptions();
 
     this.shared.formStep1 = new FormGroup({
-      mark: new FormControl(undefined, [Validators.required]),
-      model: new FormControl(undefined, [Validators.required]),
-      year: new FormControl(undefined, [Validators.required]),
+      mark: new FormControl(undefined, [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z0-9]+$')]),
+      model: new FormControl(undefined, [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]),
+      year: new FormControl(undefined, [Validators.required, Validators.pattern('[0-9]{4}'), Validators.min(1950)]),
       details: new FormControl(undefined)
     });
   }

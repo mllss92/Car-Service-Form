@@ -1,5 +1,5 @@
 <div class="step2 col s12 l6 slideDown">
-  {{ shared.formStep2.value |json }}
+  {{ shared.formStep2.value | json }}
   <div class="form-box">
     <div class="form-header">
       <h3 class="grey-text text-darken-3">POST A JOB</h3>
@@ -10,39 +10,64 @@
 
     <div class="row">
 
-      <form class="col s11" [formGroup]="shared.formStep2">
-        <div class="input-field">
+      <form class="col s11" [formGroup]="shared.formStep2" (change)="subcategoryValidator()">
+        <div class="input-field category">
           <select formControlName="category" (change)="editFontColor(category.M_FormSelect)" #category>
             <option value="default" disabled>Category of Work</option>
-            <option *ngFor="let category of categories" [value]="category.value">{{ category.content }}</option>
-          </select>
-        </div>
-
-        <div class="input-field">
-          <select formControlName="subcategory" (change)="editFontColor(subcategory.M_FormSelect)" #subcategory>
-            <option value="default" disabled>Subcategory</option>
-            <option *ngFor="let category of subcategories.body" [value]="category.value">{{ category.content }}
+            <option *ngFor="let category of shared.data.categories" [value]="category.value">{{ category.content }}
             </option>
           </select>
         </div>
 
-        <div class="input-field">
+        <div class="input-field subcategory">
+          <select class="valid" formControlName="subcategory" (change)="editFontColor(subcategory.M_FormSelect)"
+            #subcategory>
+            <option value="default" disabled>Subcategory</option>
+            <optgroup label="Body repair">
+              <option *ngFor="let category of shared.data.subcategories.body" [value]="category.value">
+                {{ category.content }}
+              </option>
+            </optgroup>
+
+            <optgroup label="Engine repair">
+              <option *ngFor="let category of shared.data.subcategories.engine" [value]="category.value">
+                {{ category.content }}
+              </option>
+            </optgroup>
+
+            <optgroup label="Сhassis repair">
+              <option *ngFor="let category of shared.data.subcategories.chassis" [value]="category.value">
+                {{ category.content }}
+              </option>
+            </optgroup>
+
+            <optgroup label="Electronics repair ">
+              <option *ngFor="let category of shared.data.subcategories.electronics" [value]="category.value">
+                {{ category.content }}
+              </option>
+            </optgroup>
+          </select>
+        </div>
+        <app-error [msg]="'Chosen subcategory does not correspond the category! Please check and correct!'"
+          *ngIf="shared.isSubcategoryInvalid && shared.isSubmited"></app-error>
+
+        <div class="input-field emirate">
           <select formControlName="emirate" (change)="editFontColor(emirate.M_FormSelect)" #emirate>
             <option value="default" disabled>Select Emirate</option>
-            <option *ngFor="let emirate of emirates" [value]="emirate.value">{{ emirate.content }}
+            <option *ngFor="let emirate of shared.data.emirates" [value]="emirate.value">{{ emirate.content }}
             </option>
           </select>
         </div>
 
-        <div class="input-field">
+        <div class="input-field area">
           <select formControlName="area" (change)="editFontColor(area.M_FormSelect)" #area>
             <option value="default" disabled>Select Area</option>
-            <option *ngFor="let area of areas" [value]="area.value">{{ area.content }}
+            <option *ngFor="let area of shared.data.areas" [value]="area.value">{{ area.content }}
             </option>
           </select>
         </div>
 
-        <div class="need-box">
+        <div class="need-box" (change)="removeValidateIfExist()">
           <p>
             <label>
               <input class="filled-in checkbox-orange" type="checkbox" formControlName="needTow">
@@ -78,8 +103,8 @@
   <div class="description">
     <div class="description-content">
       <small class="grey-text text-darken-2">Description</small>
-      <p class="grey-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure sed ea eos sapiente
-        ipsa!
+      <p class="grey-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, impedit esse? Ipsum harum
+        aspernatur alias!
       </p>
     </div>
     <div class="divider grey"></div>

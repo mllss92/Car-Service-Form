@@ -77,20 +77,6 @@ export class JobComponent implements OnInit {
     this.shared.isSubmited = false;
   }
 
-  trySibmit(): void {
-    this.shared.isSubmited = true;
-    this.step2Validate();
-    this.step2DateValidate();
-    this.step2CheckBoxValidate();
-
-    if (this.shared.formStep1.valid && this.shared.formStep2.valid && !this.shared.isSubcategoryInvalid) {
-      const value = Object.assign({}, this.shared.formStep1.value, this.shared.formStep2.value);
-      console.log(value);
-
-      console.log('100% VALID!!!!');
-    }
-  }
-
   step2Validate(): void {
     const form = this.shared.formStep2.controls;
     for (const key in form) {
@@ -129,6 +115,22 @@ export class JobComponent implements OnInit {
   step2CheckBoxValidate(): void {
     const checkBoxes = $('.need-box');
     checkBoxes.addClass('valid-check-box');
+  }
+
+  trySibmit(): void {
+    this.shared.isSubmited = true;
+    this.step2Validate();
+    this.step2DateValidate();
+    this.step2CheckBoxValidate();
+
+    if (this.shared.formStep1.valid && this.shared.formStep2.valid && !this.shared.isSubcategoryInvalid) {
+      const value = Object.assign({}, this.shared.formStep1.value, this.shared.formStep2.value);
+      const email = prompt('Enter your e-mail address. (FOR TEST ONLY!)');
+      this.http.send(value, email).subscribe(
+        res => alert(res),
+        err => alert(err)
+      );
+    }
   }
 
 }

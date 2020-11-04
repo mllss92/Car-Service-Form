@@ -1,11 +1,12 @@
 const Router = require('express').Router;
 
-const controller = require('../controller/data');
+const data = require('./data');
 
 module.exports = () => {
   const routing = Router();
 
-  routing.use('/get-data', controller.getData);
+  routing.use('/data', data());
+
 
   return routing
 }

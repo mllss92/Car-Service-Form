@@ -1,5 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import * as mat from 'materialize-css';
 
 import { SharedService } from './../shared/services/shared.service';
@@ -9,60 +9,32 @@ import { SharedService } from './../shared/services/shared.service';
   templateUrl: './step2.component.html',
   styleUrls: ['./step2.component.css']
 })
-export class Step2Component implements OnInit {
+export class Step2Component implements OnInit, OnDestroy {
 
-  categories = [
-    { value: 'body', content: 'Body repair' },
-    { value: 'engine', content: 'Engine repair' },
-    { value: 'chassis', content: 'Сhassis repair' },
-    { value: 'electronics', content: 'Electronics repair' },
-  ];
-
-  subcategories = {
-    body: [
-      { value: 'painting', content: 'Car painting' },
-      { value: 'welding', content: 'Welding works' },
-      { value: 'straightening', content: 'Auto straightening' },
-    ]
-  };
-
-  emirates = [
-    { value: 'Abu Dhabi', content: 'Abu Dhabi' },
-    { value: 'Ajman', content: 'Ajman' },
-    { value: 'Dubai', content: 'Dubai' },
-    { value: 'Fujairah', content: 'Fujairah' },
-    { value: 'Ras Al Khaimah', content: 'Ras Al Khaimah' },
-    { value: 'Sharjah', content: 'Sharjah' },
-    { value: 'Umm Al Quwain', content: 'Umm Al Quwain' }
-  ];
-
-  areas = [
-    { value: 'Some area1', content: 'Some area 1' },
-    { value: 'Some area2', content: 'Some area 2' },
-    { value: 'Some area3', content: 'Some area 3' },
-    { value: 'Some area4', content: 'Some area 4' }
-  ];
-
-  date: string;
+  @Output() step2Validate = new EventEmitter<void>();
 
   constructor(public shared: SharedService) { }
 
   ngOnInit(): void {
-
     mat.AutoInit();
     this.setSelectOptions();
     this.setDatePickerOptions();
 
     this.shared.formStep2 = new FormGroup({
-      category: new FormControl('default', [Validators.required]),
-      subcategory: new FormControl('default', [Validators.required]),
-      emirate: new FormControl('default', [Validators.required]),
-      area: new FormControl('default', [Validators.required]),
+      category: new FormControl('default', [Validators.required, Validators.pattern('^((?!default).)*$')]),
+      subcategory: new FormControl('default', [Validators.required, Validators.pattern('^((?!default).)*$')]),
+      emirate: new FormControl('default', [Validators.required, Validators.pattern('^((?!default).)*$')]),
+      area: new FormControl('default', [Validators.required, Validators.pattern('^((?!default).)*$')]),
       needTow: new FormControl(false),
       needPickup: new FormControl(false),
       customParts: new FormControl(false),
       date: new FormControl('mm/dd/yyyy')
     });
+  }
+
+  ngOnDestroy(): void {
+    this.shared.isSubmited = false;
+    this.shared.isSubcategoryInvalid = true;
   }
 
   setSelectOptions(): void {
@@ -88,22 +60,47 @@ export class Step2Component implements OnInit {
   }
 
   setDatePickerOptions(): void {
-    const options = { onClose: this.parseDate };
+    const options = { minDate: new Date(), format: 'mm-dd-yyyy' };
     $(document).ready(() => {
       ($('.datepicker') as mat).datepicker(options);
     });
-  }
-
-  parseDate(): void {
-    const dateValue = ($('#date-picker')[0] as HTMLInputElement).value;
-    if (dateValue) {
-      this.date = dateValue;
-    }
-
   }
 
   editFontColor(elem: mat): void {
     elem.input.style.color = '#000';
   }
 
+  subcategoryValidator(): void {
+    if (this.shared.formStep2.controls.category.valid && this.shared.formStep2.controls.subcategory.valid) {
+      const category = this.shared.formStep2.value.category;
+      const subcategoryValue = this.shared.formStep2.value.subcategory;
+      const subcategoryData = this.shared.data.subcategories[category];
+
+      for (const key in subcategoryData) {
+        if (Object.prototype.hasOwnProperty.call(subcategoryData, key)) {
+          const value = subcategoryData[key].value;
+          if (subcategoryValue === value) {
+            this.shared.isSubcategoryInvalid = false;
+            if (this.shared.isSubmited) {
+              this.step2Validate.emit();
+            }
+            return;
+          }
+          this.shared.isSubcategoryInvalid = true;
+          if (this.shared.isSubmited) {
+            this.step2Validate.emit();
+          }
+        }
+      }
+    }
+  }
+
+  getDate(): any {
+    return ($('.datepicker')[0] as HTMLInputElement).value;
+  }
+
+  removeValidateIfExist(): void {
+    const checkBoxes = $('.need-box');
+    checkBoxes.removeClass('valid-check-box');
+  }
 }

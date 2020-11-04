@@ -9,23 +9,39 @@
       <form class="col s11" [formGroup]="shared.formStep1">
 
         <div class="input-field">
-          <input class="" type="text" id="mark" formControlName="mark">
+          <input type="text" id="mark" formControlName="mark" [ngClass]="{
+            'valid': shared.formStep1.controls.mark.valid && shared.isSubmited,
+            'invalid': shared.formStep1.controls.mark.invalid && shared.isSubmited
+          }">
           <label for="mark">Mark</label>
         </div>
+        <app-error [msg]="'Please use only Latin letters. Minimum length is 2 characters!'"
+          *ngIf="shared.formStep1.controls.mark.invalid && shared.isSubmited"></app-error>
 
         <div class="input-field">
-          <input class="" type="text" id="model" formControlName="model">
+          <input type="text" id="model" formControlName="model" [ngClass]="{
+            'valid': shared.formStep1.controls.model.valid && shared.isSubmited,
+            'invalid': shared.formStep1.controls.model.invalid && shared.isSubmited
+          }">
           <label for="model">Model</label>
         </div>
+        <app-error [msg]="'Please use only Latin letters!'"
+          *ngIf="shared.formStep1.controls.model.invalid && shared.isSubmited"></app-error>
 
         <div class="input-field">
-          <input class="" type="number" id="year" formControlName="year">
+          <input type="number" id="year" formControlName="year" [ngClass]="{
+            'valid': shared.formStep1.controls.year.valid && shared.isSubmited,
+            'invalid': shared.formStep1.controls.year.invalid && shared.isSubmited
+          }">
           <label for="year">Year</label>
         </div>
+        <app-error [msg]="'This field is invalid. Please check and correct!'"
+          *ngIf="shared.formStep1.controls.year.invalid && shared.isSubmited"></app-error>
 
         <div class="input-field">
-          <textarea class=" materialize-textarea" id="txtArea" name="txtArea" (ngModelChange)="setParentHeight()"
-            formControlName="details"></textarea>
+          <textarea class="materialize-textarea" id="txtArea" name="txtArea" (ngModelChange)="setParentHeight()"
+            formControlName="details"
+            [ngClass]="{'valid': shared.formStep1.controls.details.value && shared.isSubmited}"></textarea>
           <label for="txtArea">What exactly need to repaired?</label>
         </div>
       </form>
